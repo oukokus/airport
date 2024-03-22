@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇〇航空 - トップページ</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    
+</head>
+<body>
+    <header>
+    <h1>〇〇航空</h1>
+</header>
+<main>
+
+<div id="booking">
+    <h2>航空券予約</h2>
+    <div id="booking0">
+<div id="booking1">
+    <p class = "pClass">出発地</p>
+        <span id="departureList">
+        <select name="airport"  id="airport" class="air">
+        <option value="HND">羽田空港</option>
+        <option value="narita">成田空港</option>
+        <option value="itami">伊丹空港</option>
+        <option value="KIX">関西空港</option>
+        <option value="tyubu">中部国際空港</option>
+        <option value="sinntitose">新千歳空港</option>
+        <option value="hukuoka">福岡空港</option>
+        <option value="naha">那覇空港</option>
+    </select>
+
+        </span>
+    </div>
+<button id="changeBtn" onclick="changeBtn()">↔︎</button>
+<div id="booking2">
+<p class="pClass">到着地</p><span id="arrivalList">
+<select name="arrivalAirport" id="arrivalAirport" class="air">
+    <option value="HND">羽田空港</option>
+    <option value="narita">成田空港</option>
+    <option value="itami">伊丹空港</option>
+    <option value="KIX">関西空港</option>
+    <option value="tyubu">中部国際空港</option>
+    <option value="sinntitose">新千歳空港</option>
+    <option value="hukuoka">福岡空港</option>
+    <option value="naha">那覇空港</option>
+</select></span>
+</div>
+</div>
+    <div id="">
+    
+    <p class="pClass">往路搭乗日<input type="date" id="datepicker2" min=""></p>
+    <p class="pClass">復路搭乗日<input type="date" id="datepicker3" min=""></p>
+    </div>
+<div>
+    <p class="pClass">人数</p>
+    
+    <ul>
+        <li id="apple">大人（12歳以上）
+            <select name="arrivalAirport" id="arrivalAirport" class="air">
+                <option value="111">1名</option>
+                <option value="111">2名</option>
+                <option value="111">3名</option>
+                <option value="111">4名</option>
+                <option value="111">5名</option>
+                <option value="111">6名</option>
+            </select>
+        </li>
+        <li id="apple">小児（3歳～11歳）
+            <select name="arrivalAirport" id="arrivalAirport" class="air">
+                <option value="111">1名</option>
+                <option value="111">2名</option>
+                <option value="111">3名</option>
+                <option value="111">4名</option>
+            </select>
+        </li>
+        <li id="apple">幼児（0歳～2歳）
+            <select name="arrivalAirport" id="arrivalAirport" class="air">
+                <option value="111">1名</option>
+                <option value="111">2名</option>
+            </select> </li>
+</ul>
+</div>
+<button><a href="search.html">検索</a></button>
+</div>
+<p><a href="">国内線予約確認</a></p>
+<p><a href="">新規入会</a></p>
+<p><a href="">ログイン</a></p>
+</main>
+<script src="index.js"></script>
+</body>
+</html>
