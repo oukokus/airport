@@ -19,6 +19,7 @@ const con = mysql.createConnection({
 app.get("/", (req, res) => {
   // cssファイルの取得
   app.use(express.static("assets"));
+
   const sql = "select * from flight";
 
 

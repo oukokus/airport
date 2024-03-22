@@ -3,33 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>〇〇航空 - トップページ</title>
+    <title>〇〇 AIRLINES - トップページ</title>
     <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body>     
+    
     <header>
-    <h1>〇〇航空</h1>
+   
+        <div id="menu">
+    <h1>〇〇 AIRLINES</h1>
+    <ul id="menu-ul">
+    <li><a href="">空席照会・航空券予約</a></li>
+    <li><a href="">国内線予約確認</a></li>
+    <li><a href="">新規入会</a></li>
+    <li><a href="">ログイン</a></li>
+    </ul>
+</div>
+    <div id="top-main">
+        <img src="images/top-main1.jpg" alt="">
+    </div>
 </header>
 <main>
-
+    <div id="container">
 <div id="booking">
-    <h2>航空券予約</h2>
+    <h2>空席照会・航空券予約</h2>
     <div id="booking0">
 <div id="booking1">
     <p class = "pClass">出発地</p>
         <span id="departureList">
         <select name="airport"  id="airport" class="air">
-        <option value="HND">羽田空港</option>
-        <option value="narita">成田空港</option>
-        <option value="itami">伊丹空港</option>
-        <option value="KIX">関西空港</option>
-        <option value="tyubu">中部国際空港</option>
-        <option value="sinntitose">新千歳空港</option>
-        <option value="hukuoka">福岡空港</option>
-        <option value="naha">那覇空港</option>
+            <option value="HND">羽田空港</option>
+            <option value="NRT">成田空港</option>
+            <option value="ITM">伊丹空港</option>
+            <option value="KIX">関西空港</option>
+            <option value="NGO">中部国際空港</option>
+            <option value="CTS">新千歳空港</option>
+            <option value="FUK">福岡空港</option>
+            <option value="OKA">那覇空港</option>
     </select>
-
         </span>
     </div>
 <button id="changeBtn" onclick="changeBtn()">↔︎</button>
@@ -37,24 +49,22 @@
 <p class="pClass">到着地</p><span id="arrivalList">
 <select name="arrivalAirport" id="arrivalAirport" class="air">
     <option value="HND">羽田空港</option>
-    <option value="narita">成田空港</option>
-    <option value="itami">伊丹空港</option>
+    <option value="NRT">成田空港</option>
+    <option value="ITM">伊丹空港</option>
     <option value="KIX">関西空港</option>
-    <option value="tyubu">中部国際空港</option>
-    <option value="sinntitose">新千歳空港</option>
-    <option value="hukuoka">福岡空港</option>
-    <option value="naha">那覇空港</option>
+    <option value="NGO">中部国際空港</option>
+    <option value="CTS">新千歳空港</option>
+    <option value="FUK">福岡空港</option>
+    <option value="OKA">那覇空港</option>
 </select></span>
 </div>
 </div>
-    <div id="">
-    
-    <p class="pClass">往路搭乗日<input type="date" id="datepicker2" min=""></p>
-    <p class="pClass">復路搭乗日<input type="date" id="datepicker3" min=""></p>
+    <div>
+    <p class="pClass">往路搭乗日<input type="date" id="datepicker2" min="" class="air"></p>
+    <p class="pClass">復路搭乗日<input type="date" id="datepicker3" min="" class="air"></p>
     </div>
 <div>
     <p class="pClass">人数</p>
-    
     <ul>
         <li id="apple">大人（12歳以上）
             <select name="arrivalAirport" id="arrivalAirport" class="air">
@@ -83,10 +93,18 @@
 </div>
 <button><a href="search.html">検索</a></button>
 </div>
-<p><a href="">国内線予約確認</a></p>
-<p><a href="">新規入会</a></p>
-<p><a href="">ログイン</a></p>
+
+<div id="sub">
+    <h2>予約確認・新規入会・ログイン</h2>
+    <p class="psub"><a href="">国内線予約確認</a></p>
+    <p class="psub"><a href="">新規入会</a></p>
+    <p class="psub"><a href="">ログイン</a></p>
+</div>
+</div>
 </main>
+   <footer>
+    <small>&copy; 〇〇AIRLINES All rights reserved.</small>
+   </footer>
 <script type="text/javascript">
 
 //出発地、到着地の入れ替え
