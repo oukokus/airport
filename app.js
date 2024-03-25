@@ -15,42 +15,87 @@ const con = mysql.createConnection({
   database: "flyght.db",
 });
 
+
 // mysqlからデータを持ってくる
 app.get("/", (req, res) => {
   // cssファイルの取得
   app.use(express.static("assets"));
 
-  const sql = "select * from flight";
+  const sql = "select * from users";
 
+  
 
   // ==========ここまでの範囲で書くようにしましょう。==========
-
-  app.get("/create", (req, res) => {
-    res.sendFile(path.join(__dirname, "views/index.ejs"));
+ 
+  app.post("/", (req, res) => {
+    const sql = 'INSERT INTO users SET ?'
+    con.query(sql, req.body, function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      res.redirect("/");
+    });
   });
 
-  con.query(sql, function (err, result, fields) {
-    if (err) throw err;
-    res.render("index", {
-      users: result,
-            personasOrg: result,
-            filteredPersonas: result,
-            order: "",
-            search: ""
-        });
-    });
+ app.get("/create", (req, res) => {
+  res.sendFile(path.join(__dirname, "views/index.ejs"));
 });
 
-app.get("/edit/:id", (req, res) => {
-  const sql = "SELECT * FROM flight WHERE id = ?";
+con.query(sql, function (err, result, fields) {
+  if (err) throw err;
+  res.render("index", { 
+
+    users: result,
+          personasOrg: result,
+          filteredPersonas: result,
+          order: "",
+          search: ""
+      });
+  });
+});
+
+app.get("/confirm/", (req, res) => {
+const sql = "SELECT * FROM users WHERE id = ?";
+con.query(sql, [req.params.id], function (err, result, fields) {
+  if (err) throw err;
+  res.render("confirm", {
+    user: result,
+  });
+});
+});
+
+app.post("/confirmation/", (req, res) => {
+  const sql = 'INSERT INTO users SET ?'
+  con.query(sql, req.body, function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+    res.redirect("/");
+  });
+});
+app.get("/confirmation/", (req, res) => {
+  const sql = "SELECT * FROM users WHERE id = ?";
   con.query(sql, [req.params.id], function (err, result, fields) {
     if (err) throw err;
-    res.render("edit", {
+    res.render("confirmation", {
       user: result,
     });
   });
 });
+  
+app.post("/confirmation/", (req, res) => {
+  const sql = "UPDATE users SET ? WHERE id = " + req.params.id;
+con.query(sql, req.body, function (err, result, fields) {
+  if (err) throw err;
+  console.log(result);
+  res.redirect("/");
+});
+});
 
-
-
+app.post("/update/", (req, res) => {
+  const sql = "UPDATE users SET ? WHERE id = " + req.params.id;
+con.query(sql, req.body, function (err, result, fields) {
+  if (err) throw err;
+  console.log(result);
+  res.redirect("/");
+});
+});
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

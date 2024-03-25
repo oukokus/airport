@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇〇 AIRLINES - トップページ</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
+<body>     
+    <header>
+        <div id="menu">
+    <h1>〇〇 AIRLINES</h1>
+    <ul id="menu-ul">
+    <li><a href="/confirm/">空席照会・航空券予約</a></li>
+    <li><a href="">国内線予約確認</a></li>
+    <li><a href="">新規入会</a></li>
+    <li><a href="">ログイン</a></li>
+    </ul>
+</div>
+    <div id="top-main">
+        <img src="/images/top-main1.jpg" alt="">
+    </div>
+</header>
+<main>
+    <h1>予約確認</h1>
+    <table id="table">
+        <tbody id="reviewArea">
+            <tr class="trClass">
+                <th>予約名</th>
+                <th>日付</th>
+                <th>往路時間</th>
+                <th>往路空港</th>
+                <th>復路時間</th>
+                <th>復路空港</th>
+                <th>便名</th>
+                <th>クラス</th>
+                <th>予約番号</th>
+            </tr>
+            <% for (let i=0; i < user.length; i++) { %>
+                <tr class="trclasss">
+                    <td class="id"><%- users[i].id %></td>
+                    <td class="username"><%- users[i].username %></td>
+                    <td class="username"><%- users[i].予約名 %></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</main>
+   <footer>
+    <small>&copy; 〇〇AIRLINES All rights reserved.</small>
+   </footer>
+<script type="text/javascript">
+
+
+
+
+</script>
+
+</body>
+</html>

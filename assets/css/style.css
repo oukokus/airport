@@ -20,6 +20,9 @@ ul{
   margin: 0;
 }
 
+/*-------------------------
+  index.ejs
+-------------------------*/
 #container{
   margin: 0 auto;
  width: 90%;
@@ -122,4 +125,43 @@ footer small{
 text-align: center;
 color: white;
 
+}
+
+
+/*-------------------------
+  confirm.ejs
+-------------------------*/
+#confirm-container{ 
+
+  margin: 0 auto;
+  width: 90%;
+}
+
+#confirm{
+  display: flex;
+  justify-content: center;
+
+}
+
+#confirm-member,#confirm-nomember{
+  border: 1px solid #aaa;
+  margin: 10px;
+  width: 1000px;
+}
+
+#confirm-member{
+  background-color:aquamarine;
+}
+
+#confirm-nomember{
+  background-color: tan;
+}
+
+#confirm-member h3,#confirm-nomember h3 {
+margin: 20px;
+border-bottom: 1px dotted black;
+}
+
+#confirm-member p,#confirm-nomember p {
+margin: 20px;
 }
