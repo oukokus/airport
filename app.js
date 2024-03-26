@@ -7,6 +7,10 @@ const port = 3000;
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 const mysql = require("mysql2");
+const router = require("express").Router();
+const passport = require("passport"); 
+const LocalStrategy = require("passport-local").Strategy;
+
 
 app.use("/",require("./router.js"));
 
