@@ -18,12 +18,16 @@ passport.use("mylogin",
     const sql = `select * from member where ID = '${input_id}'`
     con.query(sql, function (err, result) {
 
-        // mysql から取り出したaccounts情報から１番目の情報と照合する
+        // mysql から取り出したmember情報から１番目の情報と照合する
         // 実際はもっとちゃんとした方がいいですが、なるべくシンプルに
-        login_data = result[0]
+      login_data = result[0]
+      console.log(sql)
+      console.log(login_data.ID)
+      console.log(input_id)
+      console.log(input_pw)
         if (err) return done(err)
         if (!login_data) return done(null, false, { message: 'account does not exist' })
-        if(input_id  === input_pw){
+        if(input_id===login_data.ID && input_pw===login_data.pass){
       return done(null,input_id );
     }
   return done(null,false);
