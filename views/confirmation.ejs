@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>〇〇 AIRLINES - トップページ</title>
     <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>     
     <header>
@@ -36,14 +36,8 @@
                 <th>便名</th>
                 <th>クラス</th>
                 <th>予約番号</th>
-            </tr>
-            <% for (let i=0; i < user.length; i++) { %>
-                <tr class="trclasss">
-                    <td class="id"><%- users[i].id %></td>
-                    <td class="username"><%- users[i].username %></td>
-                    <td class="username"><%- users[i].予約名 %></td>
-                </tr>
-                <% } %>
+           </tr>
+     
         </tbody>
     </table>
 </main>

@@ -15,7 +15,7 @@
     <li><a href="/confirm/">空席照会・航空券予約</a></li>
     <li><a href="">国内線予約確認</a></li>
     <li><a href="">新規入会</a></li>
-    <li><a href="">ログイン</a></li>
+    <li><a href="/">ログイン</a></li>
     </ul>
 </div>
     <div id="top-main">
@@ -26,12 +26,13 @@
     <div id="confirm-container">
     <h2>予約確認</h2>
     <div id="confirm">
-<form action='/' id="confirm-member"   method=post>
+<form action="/confirm"  id="confirm-member"  name="formSubmit" method="POST" class="form">
     <h3>会員の方</h3>
     <p id="confirm-member-p1">ID <br><input type="text" name="username" id="userId" placeholder="ID"> </p><br>
-    <p id="confirm-member-p2">パスワード <br><input type="password" name="userPass"  id="userpass" autocomplete=off placeholder="Password"></p><br>
+    <p id="confirm-member-p2">パスワード <br><input type="password" name="password"  id="userpass" autocomplete=off placeholder="Password"></p><br>
     <p><button type="button" onclick="return loginButtonClick()"  value="">ログイン</button></p>
     </form>
+
 
 <form action='/' id="confirm-nomember"  method=post>
     <h3>一般の方</h3>
@@ -86,12 +87,16 @@ if (userpass.value == "") {
             trueFalse = false;
         }else if( /^[a-zA-Z0-9!-/:-@¥[-`{-~]*$/.test(userpass.value)){
             listname2.innerText = "";
+      
         }else{
             listname2.innerText = "passwordは半角英数字記号のみで記入して下さい";
             memberP2.appendChild(listname2);
             listname2.style.color = "red";
             trueFalse = false;
     }
+if(listname1.innerText == "" && listname2.innerText == ""){
+    document.formSubmit.submit();
+}
 }
 
 function nomemberButtonClick(){
@@ -106,6 +111,7 @@ function nomemberButtonClick(){
             listname3.innerText = "";
         
     }
+
 
     if (reservation.value == "") {
             listname4.innerText = "予約番号が未入力です";
@@ -130,7 +136,11 @@ function nomemberButtonClick(){
             listname5.innerText = "";
         }
 
+
+
 }
+
+
 
 </script>
 
