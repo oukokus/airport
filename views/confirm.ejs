@@ -10,10 +10,10 @@
 <body>     
     <header>
         <div id="menu">
-    <h1>〇〇 AIRLINES</h1>
+            <h1><a href="/">〇〇 AIRLINES</a></h1>
     <ul id="menu-ul">
-    <li><a href="/confirm/">空席照会・航空券予約</a></li>
-    <li><a href="">国内線予約確認</a></li>
+    <li><a href="/">TOP</a></li>
+    <li><a href="/confirm/">国内線予約確認</a></li>
     <li><a href="">新規入会</a></li>
     <li><a href="/">ログイン</a></li>
     </ul>
@@ -33,14 +33,14 @@
     <p><button type="button" onclick="return loginButtonClick()"  value="">ログイン</button></p>
     </form>
 
-
-<form action='/' id="confirm-nomember"  method=post>
+<form action='/confirmation2' id="confirm-nomember"name="formSubmit2"  method=post>
     <h3>一般の方</h3>
-    <p id="confirm-nomember-p1">搭乗日<br> <input type="date"  id="departure" > </p><br>
-    <p id="confirm-nomember-p2">予約番号(数字4桁)<br> <input type="text"  id="reservation"  placeholder="予約番号"></p><br>
-    <p id="confirm-nomember-p3">名前 <br><input type="text" id="username"  placeholder="名前"><a href="/confirmation/">a</a> </p><br>
+    <p id="confirm-nomember-p1">搭乗日<br> <input type="date"  id="departure"  name="departure"> </p><br>
+    <p id="confirm-nomember-p2">予約番号(数字4桁)<br> <input type="text"  id="reservation" name="reservation" placeholder="予約番号"></p><br>
+    <p id="confirm-nomember-p3">名前 <br><input type="text" id="name" name="name" placeholder="名前"> </p><br>
     <p><button type="button" onclick="return nomemberButtonClick()"  value="">確認</button></p>
 </form>
+
 </div>
     </div>
 </main>
@@ -62,8 +62,8 @@
     let userpass= document.getElementById("userpass");
     let departure = document.getElementById("departure");
     let reservation = document.getElementById("reservation");
-    let username = document.getElementById("username");
- 
+    let name = document.getElementById("name");
+
  
     function loginButtonClick() {
         let trueFalse = true;
@@ -95,12 +95,14 @@ if (userpass.value == "") {
             trueFalse = false;
     }
 if(listname1.innerText == "" && listname2.innerText == ""){
+
     document.formSubmit.submit();
+
+  
 }
 }
 
 function nomemberButtonClick(){
-
     let trueFalse = true;
         if (departure.value == "") {
             listname3.innerText = "搭乗日が未入力です";
@@ -127,7 +129,7 @@ function nomemberButtonClick(){
             trueFalse = false;
         }   
 
-        if (username.value == "") {
+        if (name.value == "") {
             listname5.innerText = "名前が未入力です";
             nomemberP3.appendChild(listname5);
             listname5.style.color = "red";
@@ -138,6 +140,11 @@ function nomemberButtonClick(){
 
 
 
+        if(listname3.innerText == "" && listname4.innerText == ""&& listname5.innerText == ""){
+   
+            sessionStorage.setItem('names','logindata2'),
+            document.formSubmit2.submit();
+}
 }
 
 

@@ -1,107 +1,104 @@
 const path = require("path");
 const express = require("express");
+const router = require("express").Router();
 const ejs = require("ejs");
 const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
+
 app.set("view engine", "ejs");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 const mysql = require("mysql2");
-const router = require("express").Router();
-const passport = require("passport"); 
-const LocalStrategy = require("passport-local").Strategy;
+//app.use("/", require("./router.js"));
 
+app.use(express.static("assets"));
 
-app.use("/",require("./router.js"));
 
 const con = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
   password: "rootroot",
   database: "flyght.db",
+  multipleStatements: true,
+  dateStrings: 'date' 
 });
 
 
-// mysqlからデータを持ってくる
+
 app.get("/", (req, res) => {
-  // cssファイルの取得
-  app.use(express.static("assets"));
-
-  const sql = "select * from users";
-
-  
-
-  // ==========ここまでの範囲で書くようにしましょう。==========
- //
- // app.post("/", (req, res) => {
- //   const sql = 'INSERT INTO users SET ?'
- //   con.query(sql, req.body, function (err, result, fields) {
- //     if (err) throw err;
- //     console.log(result);
- //     res.redirect("/");
- //   });
- // });
-
-// app.get("/create", (req, res) => {
-//  res.sendFile(path.join(__dirname, "views/index.ejs"));
-//});
-
+  const sql = "select * from confirmation";
 con.query(sql, function (err, result, fields) {
   if (err) throw err;
   res.render("index", { 
-    users: result,
+  page: result,
       });
-  });
+});
 });
 
 
 app.get("/confirm/", (req, res) => {
-  const sql = "SELECT * FROM member WHERE ID = ?";
+  const sql = "SELECT * FROM member ";
+
   con.query(sql, [req.params.ID], function (err, result, fields) {
     if (err) throw err;
     res.render("confirm", {
-      member: result,
-      user: result,
-    });
-  });
-  });
-//  app.post("/confirmation/", (req, res) => {
-//    const sql = "SELECT * FROM member WHERE ?";
-//    con.query(sql, req.body, function (err, result, fields) {
-//      if (err) throw err;
-//      console.log(result);
-//      res.redirect("/");
-//    });
-//  });
-//
-//app.post("/confirmation/", (req, res) => {
-//  const sql = 'INSERT INTO users SET ?'
-//  con.query(sql, req.body, function (err, result, fields) {
-//    if (err) throw err;
-//    console.log(result);
-//    res.redirect("/");
-//  });
-//});
-//
-app.get("/confirmation/", (req, res) => {
-  const sql = "SELECT * FROM member WHERE user_Id = ?";
-  con.query(sql, [req.params.id], function (err, result, fields) {
-    if (err) throw err;
-    res.render("confirmation", {
-      user: result,
-      member: result,
+
     });
   });
 });
+
+app.get("/confirm/", (req, res) => {
+  const sql = "SELECT * FROM users ";
+
+  con.query(sql, [req.body], function (err, result, fields) {
+    if (err) throw err;
+    res.render("confirm", {
+      pages: result,
+    });
+  });
+});
+
+
+app.get("/confirmation/", (req, res) => {
+  const sql = "SELECT * FROM users ";
+  con.query(sql, [req.body], function (err, result, fields) {
+    if (err) throw err;
+    res.render("confirmation", {
+page:result
+    });
+  });
+});
+
+app.get("/confirmation2/", (req, res) => {
+  const sql = "SELECT * FROM users ";
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+    res.render("confirmation2", {
+      pages: result,
+    
+    });
+  });
+})
+
+
+app.post("/confirmation2/", function (req, res, next) {
+  const departure  = req.body.departure;
+  const reservation = req.body.reservation;
+  const name = req.body.name;
+  const pages = req.body.formSubmit2
+
+
+  res.render('confirmation2', {
+    departure: "結果！",
+    reservation: "aaa",
+    name: "age",
+    pages:pages
+
+  });
+});
+
   
-//app.post("/confirmation/", (req, res) => {
-//  const sql = "UPDATE users SET ? WHERE id = " + req.params.id;
-//con.query(sql, req.body, function (err, result, fields) {
-//  if (err) throw err;
-//  console.log(result);
-//  res.redirect("/");
-//});
-//});
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

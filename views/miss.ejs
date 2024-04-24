@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇〇 AIRLINES - トップページ</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
+<body>     
+    <header>
+        <div id="menu">
+    <h1>〇〇 AIRLINES</h1>
+    <ul id="menu-ul">
+    <li><a href="">空席照会・航空券予約</a></li>
+    <li><a href="/confirm/">国内線予約確認</a></li>
+    <li><a href="">新規入会</a></li>
+    <li><a href="/">ログイン</a></li>
+    </ul>
+</div>
+    <div id="top-main">
+        <img src="/images/top-main1.jpg" alt="">
+    </div>
+</header>
+<main>
+    <% if(1==1) { %>
+        <h2 id="misscoment1"> <%= miss2 %></h2>
+        <% }else { %>
+        <h2 id="misscoment2"> <%= miss3 %></h2>
+            <% } %>
+ <p><a href="/confirm">元のページに戻る</a></p>
+</main>
+   <footer>
+    <small>&copy; 〇〇AIRLINES All rights reserved.</small>
+   </footer>
+</body>
+<style>
+
+    h2{
+    color:red;
+    font-size: 40px;
+    }
+    p{
+        font-size: 40px;
+    }
+</style>
+<script>
+
+
+</script>
+</html>
