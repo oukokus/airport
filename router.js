@@ -17,16 +17,6 @@ const con = mysql.createConnection({
   multipleStatements: true,
   dateStrings: 'date' 
 });
-router.post('/confirm', function (req, res, next) {
-  const sql = "SELECT * FROM users ";
-  con.query(sql, [req.body], function (err, result, fields) {
-    if (err) throw err;
-    res.render('./confirmation', {
-      page: result
-    });
-  });
-});
-
 
 // ローカル認証戦略の設定
 passport.use(new LocalStrategy({
@@ -71,7 +61,23 @@ router.post('/confirm', passport.authenticate('local', {
   failureRedirect: '/miss', // ログイン失敗時のリダイレクト先
   session: true // セッションを使用するかどうか
 }));
+router.get('/confirmation', function (req, res) {
+  // ログイン済みのユーザー情報はreq.userに格納されている
+  const sql = "SELECT * FROM  confirmation";
+  con.query(sql, [req.body], function (err, result, fields) {
+    if (err) throw err;
+    res.render('confirmation', {
+      pages: req.user,
+      page: result// ユーザー情報をconfirmation.ejsに渡す
+    });
+  });
+})
 // 新しいルーターを追加
+
+router.get('/confirmation', function(req, res) {
+  res.render('confirmation.ejs');
+});
+
 
 
 router.get('/miss', function(req, res) {

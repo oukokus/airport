@@ -52,18 +52,17 @@ app.get("/confirm/", (req, res) => {
   });
 });
 
-app.post("/confirm/", (req, res) => {
-  const sql = "SELECT * FROM users ";
 
+
+app.post('/confirm', function (req, res, next) {
+  const sql = "SELECT * FROM users ";
   con.query(sql, [req.body], function (err, result, fields) {
     if (err) throw err;
-    res.render("confirm", {
-      pages: result,
+    res.render('./confirmation', {
+      page: result
     });
   });
 });
-
-
 
 app.get("/confirmation2/", (req, res) => {
   const sql = "SELECT * FROM users ";
