@@ -46,7 +46,6 @@ ul{
 margin:0 15px;
  border: 1px solid ;
  border-radius: 14px;
-
  background-color: whitesmoke;
 
  
@@ -83,6 +82,7 @@ margin-top: 10px;
 
  #booking0{
   display: flex;
+  
 
  }
 

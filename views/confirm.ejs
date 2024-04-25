@@ -111,10 +111,7 @@ function nomemberButtonClick(){
             trueFalse = false;
         }else if( /^[a-zA-Z0-9!-/:-@¥[-`{-~]*$/.test(userId.value)){
             listname3.innerText = "";
-        
     }
-
-
     if (reservation.value == "") {
             listname4.innerText = "予約番号が未入力です";
             nomemberP2.appendChild(listname4);
@@ -137,11 +134,7 @@ function nomemberButtonClick(){
         }else{
             listname5.innerText = "";
         }
-
-
-
         if(listname3.innerText == "" && listname4.innerText == ""&& listname5.innerText == ""){
-   
             sessionStorage.setItem('names','logindata2'),
             document.formSubmit2.submit();
 }

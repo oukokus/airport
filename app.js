@@ -5,15 +5,12 @@ const ejs = require("ejs");
 const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
-
-app.set("view engine", "ejs");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-const mysql = require("mysql2");
-//app.use("/", require("./router.js"));
-
 app.use(express.static("assets"));
 
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+const mysql = require("mysql2");
+app.use("/", require("./router.js"));
 
 const con = mysql.createConnection({
   host: "127.0.0.1",
@@ -23,7 +20,14 @@ const con = mysql.createConnection({
   multipleStatements: true,
   dateStrings: 'date' 
 });
-
+// 他のファイルでmysqlを使えるようにexportします
+module.exports = con
+con.connect((err) => {
+    if (err) {
+        console.log('error connecting: ' + err.stack);
+        return;
+    }
+});
 
 
 app.get("/", (req, res) => {
@@ -48,7 +52,7 @@ app.get("/confirm/", (req, res) => {
   });
 });
 
-app.get("/confirm/", (req, res) => {
+app.post("/confirm/", (req, res) => {
   const sql = "SELECT * FROM users ";
 
   con.query(sql, [req.body], function (err, result, fields) {
@@ -60,15 +64,6 @@ app.get("/confirm/", (req, res) => {
 });
 
 
-app.get("/confirmation/", (req, res) => {
-  const sql = "SELECT * FROM users ";
-  con.query(sql, [req.body], function (err, result, fields) {
-    if (err) throw err;
-    res.render("confirmation", {
-page:result
-    });
-  });
-});
 
 app.get("/confirmation2/", (req, res) => {
   const sql = "SELECT * FROM users ";

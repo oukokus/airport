@@ -1,84 +1,82 @@
 const router = require("express").Router();
-const passport = require("passport"); 
-const LocalStrategy = require("passport-local").Strategy;
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 const mysql = require("mysql2");
-const path = require("path");
-const express = require("express");
-const ejs = require("ejs");
-const app = express();
-const bodyParser = require("body-parser");
-const port = 3000;
-app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
 
+router.use(session({ secret: '1234', resave: true, saveUninitialized: false }));
+router.use(passport.initialize());
+router.use(passport.session());
+
+// MySQL接続設定
 const con = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
   password: "rootroot",
   database: "flyght.db",
+  multipleStatements: true,
   dateStrings: 'date' 
 });
-
-passport.use("mylogin",
-  new LocalStrategy({
-    usernameField: "username",
-    passwordField: "password",
-
-  }, function (input_id, input_pw, done) {
-   
-    const sql = `select * from member where ID = '${input_id}'`
-    con.query(sql, function (err, result) {
-      // mysql から取り出したmember情報から１番目の情報と照合する
-      // 実際はもっとちゃんとした方がいいですが、なるべくシンプルに
-      login_data = result[0]
-console.log(login_data)
-      console.log(sql)
-//      console.log(input_id)
-//      console.log(input_pw)
-      if (err) return done(err)
-
-      if (input_id === login_data.ID && input_pw === login_data.pass) {
-        router.get("/confirmation", (req, res) => {
-          const sql = "SELECT * FROM confirmation WHERE 会員ID";
-          con.query(sql, function (err, result, fields) {
-            if (err) throw err;
-            res.render("confirmation", {
-              page: result,
-              valueID: login_data.ID,
-            });
-          });
-        })
-
-        return done(null, input_id);
-      }
-      return done(null, false,{message:'ID or Passwordが間違っています。'});
-    })
-  }, 
-  ));
-
-
-  router.use(passport.initialize());
-  router.get("/miss",(req,res) => {
-    res.render("./miss.ejs",
-      {
-      miss2: 'ID、またはPasswordが間違っています',
-      miss3: '予約が見つかりませんでした'
-      });
+router.post('/confirm', function (req, res, next) {
+  const sql = "SELECT * FROM users ";
+  con.query(sql, [req.body], function (err, result, fields) {
+    if (err) throw err;
+    res.render('./confirmation', {
+      page: result
+    });
   });
+});
 
 
+// ローカル認証戦略の設定
+passport.use(new LocalStrategy({
+  usernameField: 'username',
+  passwordField: 'password',
+  session: true,
+  passReqToCallback: false,
+}, function (input_id, input_pw, done) {
+  const sql = `select * from  member where ID = '${input_id}'`;
+  con.query(sql, function (err, result) {
+      login_data = result[0];
+      if (err) return done(err);
+      if (!login_data) return done(null, false, { message: 'account does not exist' });
+      if (input_pw == login_data.pass) {
+          return done(null, login_data);
+      } else {
+          return done(null, false, { message: 'wrong password' });
+      }
+  });
+}));
 
-// 5. どのルーティングにログイン処理を入れるか宣言
-// /confirmにpostリクエストがあった場合は、上で作成した"mylogin"というログイン処理をする
-// ログインに成功したら"/confirmation"へ、失敗したら"/miss"にリダイレクトする
-router.post("/confirm",passport.authenticate(
-  "mylogin",
-  {
-    successRedirect: "/confirmation",
-    failureRedirect:  "/miss",
-    session: false // セッションにログイン情報を保存しない。trueとすると、passport.serializeUserやpassport.deserializeUserというメソッドを実装する事でセッションに保存したログイン情報が正しいか判別出来る。
-  }
-));
+// ユーザー情報をセッションに保存
+passport.serializeUser(function(user, done) {
+  done(null, user.ID);
+});
+
+// セッションからユーザー情報を復元
+passport.deserializeUser(function (user_id_saved, done) {
+  const sql = `select * from member where ID = '${user_id_saved}'`;
+  con.query(sql, function (err, result) {
+      done(null, result[0]);
+  });
+});
+
+// ログインページ
+router.get('/confirm', function (req, res) {
+  res.render('confirm.ejs');
+});
+
+router.post('/confirm', passport.authenticate('local', {
+  successRedirect: '/confirmation', // ログイン成功時のリダイレクト先
+  failureRedirect: '/miss', // ログイン失敗時のリダイレクト先
+  session: true // セッションを使用するかどうか
+}));
+// 新しいルーターを追加
+
+
+router.get('/miss', function(req, res) {
+  res.render('miss.ejs');
+});
 
 
 module.exports = router;

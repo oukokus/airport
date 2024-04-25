@@ -38,7 +38,7 @@
                 <th>予約番号</th>
            </tr>
            <% for (let i = 0; i < page.length; i++) { %>
-            <% if (page[i].会員ID == valueID) { %>
+       
                <tr>
                     <td><%= page[i].会員ID %></td>
                     <td><%= page[i].予約名 %></td>
@@ -52,7 +52,6 @@
                     <td><%= page[i].予約番号 %></td>
                </tr>
               
-               <% } %>
            <% }%>
 
      </div>

@@ -25,34 +25,32 @@
     <h1>予約確認</h1>
     <table id="table">
         <tbody id="reviewArea">
-            <tr class="trClass">
-                <th>会員ID</th>
-                <th>予約名</th>
-                <th>日付</th>
-                <th>往路時間</th>
-                <th>往路空港</th>
-                <th>復路時間</th>
-                <th>復路空港</th>
-                <th>便名</th>
-                <th>クラス</th>
-                <th>予約番号</th>
-           </tr>
-           <% for (let i = 0; i < pages.length; i++) { %>
-               <tr>
-                    <td><%= pages[i].Id %></td>
-                    <td><%= pages[i].予約名 %></td>
-                    <td><%= pages[i].日付 %></td>
-                    <td><%= pages[i].往路時間 %></td>
-                    <td><%= pages[i].往路空港 %></td>
-                    <td><%= pages[i].復路時間 %></td>
-                    <td><%= pages[i].復路空港 %></td>
-                    <td><%= pages[i].便名 %></td>
-                    <td><%= pages[i].クラス %></td>
-                    <td><%= pages[i]name %></td>
-                    <td><%= pages[i]number %></td>
-               </tr>
-           <% }%>
-     </div>
+        <tr class="trClass">
+    <th>予約名</th>
+    <th>日付</th>
+    <th>往路時間</th>
+    <th>往路空港</th>
+    <th>復路時間</th>
+    <th>復路空港</th>
+    <th>便名</th>
+    <th>クラス</th>
+    <th>予約番号</th>
+</tr>
+<% for (let i = 0; i < pages.length; i++) { %>
+    <tr>
+    
+        <td><%= pages[i].予約名 %></td>
+        <td><%= pages[i].日付 %></td>
+        <td><%= pages[i].往路時間 %></td>
+        <td><%= pages[i].往路空港 %></td>
+        <td><%= pages[i].復路時間 %></td>
+        <td><%= pages[i].復路空港 %></td>
+        <td><%= pages[i].便名 %></td>
+        <td><%= pages[i].クラス %></td>
+        <td><%= pages[i].number %></td>
+    </tr>
+<% } %>
+
     </tbody>
     </table>
 </main>
