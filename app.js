@@ -40,6 +40,11 @@ con.query(sql, function (err, result, fields) {
 });
 });
 
+app.get('/ticket', function(req, res) {
+  res.render('ticket.ejs');
+});
+
+
 
 app.get("/confirm/", (req, res) => {
   const sql = "SELECT * FROM member ";

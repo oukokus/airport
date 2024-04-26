@@ -81,9 +81,15 @@ router2.post("/confirm",passport.authenticate(
   }
 ));
 
-router2.get("/confirmation",(req,res) => {
-  res.render("./confirmation.ejs");
+
+router2.get('/confirmation2', function(req, res) {
+  res.render('confirmation2.ejs');
 });
 
+
+
+router2.get('/miss', function(req, res) {
+  res.render('miss.ejs');
+});
 
 module.exports = router2;

@@ -1,43 +1,253 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>〇〇 AIRLINES - トップページ</title>
-    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/style.css">
-</head>
-<body>     
-    <header>
-        <div id="menu">
-            <h1><a href="/">〇〇 AIRLINES</a></h1>
-    <ul id="menu-ul">
-  
-    <li><a href="/confirm/">国内線予約確認</a></li>
-    <li><a href="">新規入会</a></li>
-    <li><a href="/">ログイン</a></li>
-    </ul>
-</div>
-    <div id="top-main">
-        <img src="/images/top-main1.jpg" alt="">
-    </div>
-</header>
-<main>
-    <table>
-        <tbody>
-            <tr>
-                <th></th>
-            </tr>
-        </tbody>
-    </table>
-</main>
-   <footer>
-    <small>&copy; 〇〇AIRLINES All rights reserved.</small>
-   </footer>
-<script type="text/javascript">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>〇〇 AIRLINES - トップページ</title>
+        <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
+        <link type="text/css" rel="stylesheet" href="/css/style.css">
+        <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div id="menu">
+                <h1><a href="/">〇〇 AIRLINES</a></h1>
+                <ul id="menu-ul">
+                    <li><a href="/confirm/">国内線予約確認</a></li>
+                    <li><a href="">新規入会</a></li>
+                    <li><a href="/">ログイン</a></li>
+                </ul>
+            </div>
+            <div class="header-top">
+                <ol class="headerMenu">
+                    <li class="headerMenu1"><span class="headerMenuIcon">1</span>区間検索</li>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="headerMenuIcon">2</span>チケット確認</li>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="headerMenuIcon">3</span>お客様情報入力</li>
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <li><span class="headerMenuIcon">4</span>予約完了</li>
+                </ol>
+            </div>
+            </ol>
+        </header>
+        <div id="wrapper">
+            <main class="ticket-main">
+                <table class="ticket-day">
+                    <tbody>
+                        <tr id="ticket-date">
+                            <td class="prevDayBtn">
+                                <button onclick="BtnPrev"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                            </td>
+                            <td id="ticket-days"><input type="date"></td>
+                            <td class="nextDayBtn">
+                                <button onclick="BtnNext"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                            </td>
+                            <td class="ticket-date-right">
+                                <span>tokyo</span>
+                                <button onclick="ticketChangeBtn()"><i class="fa fa-arrows-h" aria-hidden="true"></i></button>
+                                <span>osaka</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="ticket-value">
+                    <li><a href="#">おもな運賃</a></li>
+                    <li><a href="#">バリュー</a></li>
+                    <li><a href="#">スーパーバリュー</a></li>
+                    <li><a href="#">その他運賃</a></li>
+                </ul>
+                <table class="ticket-priceTable">
+                    <thead>
+                        <tr class="ticket-priceTr">
+                            <td class="selectTime"></td>
+                            <td class="selectClass">Premium class</td>
+                            <td class="selectValue">フレックス</td>
+                            <td class="selectValue">バリュー</td>
+                            <td class="selectValue">（往復）バリュー</td>
+                            <td class="selectValue">ビジネスきっぷ</td>
+                            <td class="selectValue">株主優待割引</td>
+                            <td class="selectValue"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ticket-priceTr">
+                            <th>2024-04-26</th>
+                            <th>a</th>
+                            <th>a</th>
+                            <th>a</th>
+                            <th>a</th>
+                            <th>a</th>
+                            <th>a</th>
+                            <th>空白</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class=ticket-chair>
+                    <li>▲：残り10-29席 </li>
+                    <li>1-9：残りの席数 </li>
+                    <li>---：設定なし</li>
+                </ul>
+                <ul class="ticket-chair">
+                    <li>：指定日最安 </li>
+                    <li>：空席予測に連動した運賃</li>
+                    <li><i class="fa fa-wifi" aria-hidden="true"></i>：Wi-Fi Serviceをご利用いただけます</li>
+                </ul>
+                <ul class="ticket-chair">
+                    <li>運航便の機内設備については、各便の機種コードからご確認ください。</li>
+                    </li>
+                    </ul>
+                    <p><input type="submit" value="復路便の選択へ >"  class="ticket-return-select"></p>
+                    <p><input type="submit"value="確認画面へ >"class="ticket-check-select"></p>
+            </main>
+            <sub class="ticket-sub">
+                <div class="ticket-subpage">
+                    <h2>区間1</h2>
+                    <p>a</p>
+                    <p>a</p>
+                    <p>a</p>
+                    <p>a</p>
+                    <p>a</p>
+                    <p>a</p>
+                    <p>合計</p>
+                </div>
+            </sub>
+        </div>
+        <footer>
+            <small>&copy; 〇〇AIRLINES All rights reserved.</small>
+        </footer>
+        <script type="text/javascript">
 
 
-</script>
+        </script>
+    </body>
+    <style>
+        #wrapper {
+            display: flex;
+        }
 
-</body>
+        .ticket-main {
+            width: 730px;
+            text-align: right;
+            margin: 0 auto;
+          
+        }
+
+        .ticket-sub {
+            width: 250px;
+margin: 0 auto;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .header-top {
+            padding: 20px;
+            border-bottom: 4px solid #10016f
+        }
+
+        .headerMenu {
+            margin: 0;
+            padding-left: 0;
+        }
+
+        .headerMenu1 {
+            background-color: #b7dbee;
+        }
+
+        .headerMenu li {
+            display: inline-block;
+            padding-right: 20px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .headerMenuIcon {
+            margin-left: 20px;
+            margin-right: 15px;
+            color: #aaa;
+        }
+
+   
+
+        .ticket-day {
+            padding: 10px;
+        width: 730px;
+        border-bottom: 1px solid #ccc;
+
+        }
+      
+        
+
+        .nextDayBtn{ 
+             border-right: 1px solid #ccc;
+            
+        }
+        .ticket-date-right {
+            padding: 0 30px;
+      
+            text-align: center;
+        }
+
+        .ticket-value {
+            margin-top: 20px;
+        }
+
+        .ticket-value li {
+            display: inline-block;
+            background-color: #c2d6ff;
+            border-radius: 15px 15px 0 0;
+            padding: 0 8px;
+        }
+
+        .ticket-priceTable th,
+        .ticket-priceTable td {
+            border: 1px solid #000000;
+        }
+
+        .ticket-chair {
+            text-align: right;
+       
+        }
+      
+
+        .ticket-chair li {
+            display: inline;
+            font-size: 13px;
+      
+            padding: 0 5px;
+       
+        }
+
+        .ticket-subpage {
+            background-color: #c2d6ff;
+            padding: 10px;
+        }
+
+        .ticket-subpage h2 {
+            color: #10016f
+        }
+
+        .ticket-return-select{
+            color: rgb(255, 255, 255);
+            background-color: rgb(234, 95, 76);
+            border: 1px solid  rgb(234, 95, 76);
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 5px 25px;
+margin-bottom: 10px;
+            
+        }
+        .ticket-check-select{
+            color: rgb(255, 255, 255);
+            background-color: #10016f;
+            border: 1px solid #10016f;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 5px 25px;
+        }
+    </style>
 </html>
