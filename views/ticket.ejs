@@ -44,9 +44,9 @@
                                 <button onclick="BtnNext"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
                             </td>
                             <td class="ticket-date-right">
-                                <span>tokyo</span>
+                                <span>東京(羽田)</span>
                                 <button onclick="ticketChangeBtn()"><i class="fa fa-arrows-h" aria-hidden="true"></i></button>
-                                <span>osaka</span>
+                                <span>大阪(伊丹)</span>
                             </td>
                         </tr>
                     </tbody>
@@ -61,7 +61,7 @@
                     <thead>
                         <tr class="ticket-priceTr">
                             <td class="selectTime"></td>
-                            <td class="selectClass">Premium class</td>
+                            <td class="selectClass">Premium <br>class</td>
                             <td class="selectValue">フレックス</td>
                             <td class="selectValue">バリュー</td>
                             <td class="selectValue">（往復）バリュー</td>
@@ -71,16 +71,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% for (let i=0; i < ticket.length; i++) { %>
                         <tr class="ticket-priceTr">
-                            <th>2024-04-26</th>
-                            <th>a</th>
-                            <th>a</th>
-                            <th>a</th>
-                            <th>a</th>
-                            <th>a</th>
-                            <th>a</th>
-                            <th>空白</th>
+                            <th class="selectValue-time" ><span class="selectValue-timetext"><%= ticket[i].time %></span><br>
+                                <%= ticket[i].plane %><br>
+                                <%= ticket[i].wifi %> <i class="fa fa-wifi" aria-hidden="true"></i>
+                            </th>
+                            <th ><%= ticket[i].premium %>円<br><input type="radio" name="radioselect"></th>
+                            <th class="selectValue-th"><%= ticket[i].flex %>円<br><input type="radio" name="radioselect"></th>
+                            <th class="selectValue-th" ><%= ticket[i].value %>円<br><input type="radio" name="radioselect"></th>
+                            <th class="selectValue-th"><%= ticket[i].roundvalue %>円<br><input type="radio" name="radioselect"></th>
+                            <th class="selectValue-th"><%= ticket[i].business %>円<br><input type="radio" name="radioselect"></th>
+                            <th class="selectValue-th"><%= ticket[i].holder %>円<br><input type="radio" name="radioselect"></th>
+                            <th class="selectValue-th"></th>
                         </tr>
+                                        <% }%>
                     </tbody>
                 </table>
                 <ul class=ticket-chair>
@@ -103,13 +108,13 @@
             <sub class="ticket-sub">
                 <div class="ticket-subpage">
                     <h2>区間1</h2>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>合計</p>
+                    <p>日付</p>
+                    <p>空港</p>
+                    <p>時間</p>
+                    <p>便</p>
+                    <p>フレックス 円</p>
+                    <p>人数</p>
+                    <p>合計: 円</p>
                 </div>
             </sub>
         </div>
@@ -126,25 +131,34 @@
             display: flex;
         }
 
-        .ticket-main {
-            width: 730px;
+        .ticket-main,.ticket-priceTable {
+
+            width: 900px;
             text-align: right;
-            margin: 0 auto;
+            margin: 0   auto;
+       
           
         }
-
+        .ticket-main{
+            border-top: 4px solid #10016f
+        }
         .ticket-sub {
             width: 250px;
 margin: 0 auto;
+border-top: 4px solid #10016f
+
         }
 
-        td {
+        th,td {
             text-align: center;
+            font-size: 16px;
+            padding: 10px;
+            
         }
 
         .header-top {
             padding: 20px;
-            border-bottom: 4px solid #10016f
+           
         }
 
         .headerMenu {
@@ -181,6 +195,7 @@ margin: 0 auto;
         
 
         .nextDayBtn{ 
+            padding-right: 10px;
              border-right: 1px solid #ccc;
             
         }
@@ -249,5 +264,22 @@ margin-bottom: 10px;
             font-size: 20px;
             padding: 5px 25px;
         }
+        .selectValue-th{
+            background-color: #e7ebf5;
+            text-align: center;
+        
+        }
+        .selectValue-time{
+            text-align: left;
+        }
+        .selectValue-timetext{
+        font-size: 24px;
+        }
+
+        .selectClass{
+            background-color: #3f5fff;
+            color: #fff;
+        }
+
     </style>
 </html>

@@ -40,8 +40,15 @@ con.query(sql, function (err, result, fields) {
 });
 });
 
-app.get('/ticket', function(req, res) {
-  res.render('ticket.ejs');
+
+app.get("/ticket", (req, res) => {
+  const sql = "select * from ticket";
+con.query(sql, function (err, result, fields) {
+  if (err) throw err;
+  res.render("ticket.ejs", { 
+  ticket: result,
+      });
+});
 });
 
 
