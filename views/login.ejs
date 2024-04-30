@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇〇 AIRLINES - トップページ</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
+<body>     
+    <header>
+        <div id="menu">
+            <h1><a href="/">〇〇 AIRLINES</a></h1>
+    <ul id="menu-ul">
+    <li><a href="/">TOP</a></li>
+    <li><a href="/confirm/">国内線予約確認</a></li>
+    <li><a href="">新規入会</a></li>
+    <li><a href="/">ログイン</a></li>
+    </ul>
+</div>
+    <div id="top-main">
+        <img src="/images/top-main1.jpg" alt="">
+    </div>
+</header>
+<main>
+    <div id="confirm-container">
+    <div id="confirm">
+<form action="/"  id="confirm-member"  name="formSubmit" method="POST" class="form">
+    <h2>ログイン</h2>
+    <p id="confirm-member-p1">お客様番号 <br><input type="text" name="username" id="userId" placeholder="ID"> </p><br>
+    <p id="confirm-member-p2">パスワード <br><input type="password" name="password"  id="userpass" autocomplete=off placeholder="Password"></p><br>
+    <p><button type="button" onclick="return loginButtonClick()"  value="">ログイン</button></p>
+    </form>
+</div>
+    </div>
+</main>
+   <footer>
+    <small>&copy; 〇〇AIRLINES All rights reserved.</small>
+   </footer>
+<script type="text/javascript">
+  let memberP1= document.getElementById("confirm-member-p1");
+  let memberP2= document.getElementById("confirm-member-p2");
+  let listname1 = document.createElement('p');
+  let listname2 = document.createElement('p');
+    let userId = document.getElementById("userId");
+    let userpass= document.getElementById("userpass");
+    function loginButtonClick() {
+        let trueFalse = true;
+        if (userId.value == "") {
+            listname1.innerText = "お客様番号が未入力です";
+            memberP1.appendChild(listname1);
+            listname1.style.color = "red";
+            trueFalse = false;
+        }else if( /^[a-zA-Z0-9!-/:-@¥[-`{-~]*$/.test(userId.value)){
+            listname1.innerText = "";
+        }else{
+            listname1.innerText = "お客様番号は半角英数字記号のみで記入して下さい";
+            memberP1.appendChild(listname1);
+            listname1.style.color = "red";
+            trueFalse = false;
+    }
+if (userpass.value == "") {
+            listname2.innerText = "passwordが未入力です";
+            memberP2.appendChild(listname2);
+            listname2.style.color = "red";
+            trueFalse = false;
+        }else if( /^[a-zA-Z0-9!-/:-@¥[-`{-~]*$/.test(userpass.value)){
+            listname2.innerText = "";
+      
+        }else{
+            listname2.innerText = "passwordは半角英数字記号のみで記入して下さい";
+            memberP2.appendChild(listname2);
+            listname2.style.color = "red";
+            trueFalse = false;
+    }
+if(listname1.innerText == "" && listname2.innerText == ""){
+    document.formSubmit.submit()
+}
+}
+</script>
+
+</body>
+</html>

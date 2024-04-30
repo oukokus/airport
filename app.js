@@ -51,6 +51,15 @@ con.query(sql, function (err, result, fields) {
 });
 });
 
+app.get("/login/", (req, res) => {
+  const sql = "SELECT * FROM member ";
+
+  con.query(sql, [req.params.ID], function (err, result, fields) {
+    if (err) throw err;
+    res.render("login", {
+    });
+  });
+});
 
 
 app.get("/confirm/", (req, res) => {
